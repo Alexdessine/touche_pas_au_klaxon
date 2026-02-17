@@ -6,6 +6,11 @@
             "Entreprise\\TouchePasAuKlaxon\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Entreprise\\TouchePasAuKlaxon\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Alexdessine",
@@ -17,6 +22,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^12.5",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.94"
     }
 }
