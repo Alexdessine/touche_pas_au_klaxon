@@ -1,0 +1,16 @@
+{
+    "name": "entreprise/touche-pas-au-klaxon",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Entreprise\\TouchePasAuKlaxon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alexdessine",
+            "email": "alexandre@bourlier.email"
+        }
+    ],
+    "require": {}
+}
