@@ -1,10 +1,10 @@
-// Surcharge bootstrap pour personnaliser les styles de l'application
-$primary: #004080;
-$secondary: #ffcc08;
+// Variables personnalisées
+@import "variables";
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
-// Styles personnalisés
-body {
-  background-color: #f8f9fa;
-}
+@import "base";
+
+@import "components";
+
+@import "layout";
