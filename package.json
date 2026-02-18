@@ -1,0 +1,15 @@
+{
+    "name": "touche_pas_au_klaxon",
+    "version": "1.0.0",
+    "description": "A simple PHP application",
+    "main": "index.php",
+    "scripts": {
+        "start": "php -S localhost:8000 -t public",
+        "sass": "sass --quiet-deps --watch public/scss:public/css"
+    },
+    "author": "Alexnandre Bourlier",
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "^5.3.8"
+    }
+}
