@@ -21,11 +21,11 @@
     <tbody>
         <tr>
             <td>Paris</td>
-            <td>01-07-2024</td>
-            <td>08:00</td>
+            <td><time datetime="2024-07-01">01-07-2024</time></td>
+            <td><time datetime="2024-07-01T08:00">08:00</time></td>
             <td>Lyon</td>
-            <td>01-07-2024</td>
-            <td>08:00</td>
+            <td><time datetime="2024-07-01">01-07-2024</time></td>
+            <td><time datetime="2024-07-01T08:00">08:00</time></td>
             <td>3</td>
             <td>
                 <a href="#"><i class="fa-solid fa-eye"></i></a>
@@ -35,11 +35,11 @@
         </tr>
         <tr>
             <td>Lille</td>
-            <td>02-07-2024</td>
-            <td>09:30</td>
+            <td><time datetime="2024-07-02">02-07-2024</time></td>
+            <td><time datetime="2024-07-02T09:30">09:30</time></td>
             <td>Marseille</td>
-            <td>02-07-2024</td>
-            <td>09:30</td>
+            <td><time datetime="2024-07-02">02-07-2024</time></td>
+            <td><time datetime="2024-07-02T09:30">09:30</time></td>
             <td>2</td>
             <td>
                 <a href="#"><i class="fa-solid fa-eye"></i></a>

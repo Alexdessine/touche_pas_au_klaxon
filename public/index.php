@@ -8,6 +8,18 @@ use App\Core\Router;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
+if (isset($_GET['debug']) && $_GET['debug'] === 'login') {
+    $_SESSION['user'] = [
+        'id' => 1,
+        'firstname' => 'Alex',
+        'lastname' => 'Martin',
+        'role' => 'admin'
+    ];
+}
+
+if (isset($_GET['debug']) && $_GET['debug'] === 'logout') {
+    unset($_SESSION['user']);
+}
 
 // Charger .env si présent
 $envPath = dirname(__DIR__);
