@@ -6,18 +6,14 @@ namespace App\Core;
 
 final class View
 {
-    public static function render(string $template, array $data = []): void
+    public static function render(string $view, array $data = []): void
     {
         extract($data);
-        
-        $viewPath = dirname(__DIR__, 2) . '/views/' . $template . '.php';
 
-        if (!file_exists($viewPath)) {
-            throw new \RuntimeException("Vue introuvable : $view");
-        }
+        ob_start();
+        require dirname(__DIR__, 2) . '/views/' . $view . '.php';
+        $content = ob_get_clean();
 
-        require dirname(__DIR__, 2) . '/views/layout/header.php';
-        require $viewPath;
-        require dirname(__DIR__, 2) . '/views/layout/footer.php';
+        require dirname(__DIR__, 2) . '/views/layout/base.php';
     }
 }

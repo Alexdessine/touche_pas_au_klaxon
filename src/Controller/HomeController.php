@@ -10,6 +10,8 @@ final class HomeController
 {
     public function index(): void
     {
-        View::render('home/index');
+        View::render('home/index', [
+            'title' => 'Accueil - Touche Pas au Klaxon'
+        ]);
     }
 }
