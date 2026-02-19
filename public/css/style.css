@@ -11872,21 +11872,36 @@ body {
   color: #82b864;
 }
 
-table {
+table.table {
   width: 100%;
   margin: auto;
   border: 2px solid #384050;
   border-collapse: collapse;
 }
-table th {
+table.table thead tr.fond th {
   background-color: #0074c7;
-  color: white;
   border: 1px solid white;
-  text-align: center;
 }
-table td {
+table.table td {
   border: 1px solid #384050;
-  text-align: center;
+}
+
+.modal-body p span a {
+  color: #384050;
+  transition: color 0.3s ease;
+}
+.modal-body p span a:hover {
+  color: #232832;
+}
+
+.btn.btn-body-color {
+  background-color: #82b864;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn.btn-body-color:hover {
+  background-color: rgb(104.1283185841, 159.8008849558, 73.1991150442);
 }
 
 nav ul a {

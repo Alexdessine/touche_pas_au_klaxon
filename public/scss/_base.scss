@@ -13,21 +13,44 @@ body {
     color: $success;
 }
 
-table {
+table.table {
     width: 100%;
     margin: auto;
     border: 2px solid $text-main;
     border-collapse: collapse; // recommandé pour un rendu propre
 
-    th {
+    thead tr.fond th{
         background-color: $primary;
-        color: white;
         border: 1px solid white;
-        text-align: center;
     }
 
     td {
         border: 1px solid $text-main;
-        text-align: center;
+    }
+}
+
+.modal-body{
+    p{
+        span{
+            a{
+                color: $text-main;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: darken($text-main, 10%);
+                }
+            }
+        }
+    }
+}
+
+.btn.btn-body-color {
+    background-color: $success;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($success, 10%);
     }
 }
