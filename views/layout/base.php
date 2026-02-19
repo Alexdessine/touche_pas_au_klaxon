@@ -8,10 +8,10 @@
     <script src="https://kit.fontawesome.com/c0df283285.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php require __DIR__ . '/header.php'; ?>
 
-    <main class="container my-5">
+    <main class="container my-5 flex-grow-1">
         <?= $content ?>
     </main>
 

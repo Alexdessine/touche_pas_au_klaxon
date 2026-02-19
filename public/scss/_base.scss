@@ -14,6 +14,8 @@ body {
 }
 
 table {
+    width: 100%;
+    margin: auto;
     border: 2px solid $text-main;
     border-collapse: collapse; // recommandé pour un rendu propre
 
