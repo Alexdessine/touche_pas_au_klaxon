@@ -1,6 +1,5 @@
-<h1>Bienvenue sur la page des agences de l'application</h1>
-
-<h2>Agences présentes</h2>
+<h1>Agences</h1>
+<p>Liste des agences présentes dans différentes villes.</p>
 <table class="table table-striped">
     <thead>
         <tr class="fond text-center">
