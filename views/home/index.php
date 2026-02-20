@@ -1,11 +1,14 @@
-<h1>
-    Bienvenue sur la page d'accueil de Touche Pas au Klaxon !
+<h1 class="border-bottom border-primary border-2 pb-2 mb-4">
+    Bienvenue sur notre site intranet de covoiturage !
 </h1>
+
 <p>
     Découvrez notre plateforme de covoiturage pour les trajets interurbains. Inscrivez-vous dès maintenant pour trouver des trajets, partager vos trajets ou simplement explorer les options de covoiturage disponibles.
 </p>
-<h2>Trajets disponibles</h2>
-<p>Pour obtenir plus d'informations sur un trajet, veuillez vous connecter ou vous inscrire.</p>
+<?php if(!isset($_SESSION['user'])): ?>
+<h2 class="mt-5">Trajets disponibles</h2>
+<p class="mb-4">Pour obtenir plus d'informations sur un trajet, veuillez vous connecter ou vous inscrire.</p>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/../partials/trips-table.php'; ?>
 <!-- Modal -->

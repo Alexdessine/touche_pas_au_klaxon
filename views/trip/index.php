@@ -1,4 +1,8 @@
 <h2>Trajets proposés</h2>
+<div class="bg-warning border border-danger p-3 text-center mb-4 rounded">
+    <p class="fw-bold text-danger">/!\ A Supprimer /!\</p>
+    <p>Ici lister tous les trajets enregistrés en base de données</p>
+</div>
 <?php require_once __DIR__ . '/../partials/trips-table.php'; ?>
 
 <!-- Modal -->

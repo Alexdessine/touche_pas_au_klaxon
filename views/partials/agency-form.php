@@ -1,11 +1,10 @@
+<h1 class="mb-3"><?= htmlspecialchars($submitTitle ?? 'Agence') ?></h1>
 <form class="container mt-4">
 
   <div class="row">
 
     <!-- Colonne droite : Arrivée -->
     <div class="col-md-12">
-
-      <h4 class="mb-3"><?= htmlspecialchars($submitTitle ?? 'Agence') ?></h4>
 
       <div class="mb-3">
         <label for="InputCity2" class="form-label">Agence</label>
