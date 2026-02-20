@@ -28,8 +28,15 @@
             <td>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ><i class="fa-solid fa-eye"></i></a>
                 <?php if (isset($_SESSION['user']) && ($_SESSION['user']['id'] == 1 || $_SESSION['user']['role'] === 'admin')): ?>
+                    <?php if ($_SESSION['user']['role'] !== 'admin'): ?>
                     <a href="/trajets/edit"><i class="fa-solid fa-pen"></i></a>
-                    <a href="/trajets/delete"><i class="fa-solid fa-trash"></i></a>
+                    <?php endif; ?>
+                    <form action="/trajets/delete" method="POST" class="d-inline">
+                        <input type="hidden" name="id" value="<?= htmlspecialchars($trip['id']) ?>">
+                        <button type="submit" class="btn btn-link p-0 border-0"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce trajet ?')">
+                            <i class="fa-solid fa-trash text-danger"></i>
+                        </button>
+                    </form>
                 <?php endif; ?>
             </td>
             <?php endif; ?>
@@ -47,8 +54,15 @@
             <td>
                 <?php if (isset($_SESSION['user']) && ($_SESSION['user']['id'] == 2 || $_SESSION['user']['role'] === 'admin')): ?>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-eye"></i></a>
+                    <?php if ($_SESSION['user']['role'] !== 'admin'): ?>
                     <a href="/trajets/edit"><i class="fa-solid fa-pen"></i></a>
-                    <a href="/trajets/delete"><i class="fa-solid fa-trash"></i></a>
+                    <?php endif; ?>
+                    <form action="/trajets/delete" method="POST" class="d-inline">
+                        <input type="hidden" name="id" value="<?= htmlspecialchars($trip['id']) ?>">
+                        <button type="submit" class="btn btn-link p-0 border-0"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce trajet ?')">
+                            <i class="fa-solid fa-trash text-danger"></i>
+                        </button>
+                    </form>
                 <?php endif; ?>
             </td>
             <?php endif; ?>

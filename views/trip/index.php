@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../partials/alert.php'; ?>
 <h2>Trajets proposés</h2>
 <div class="bg-warning border border-danger p-3 text-center mb-4 rounded">
     <p class="fw-bold text-danger">/!\ A Supprimer /!\</p>

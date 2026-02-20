@@ -71,6 +71,24 @@ return [
     ],
 
     [
+        'method' => 'POST',
+        'path' => '/agences/ajouter',
+        'controller' => [AgenciesController::class, 'store']
+    ],
+
+    [
+        'method' => 'POST',
+        'path' => '/agences/edit',
+        'controller' => [AgenciesController::class, 'update']
+    ],
+
+    [
+        'method' => 'POST',
+        'path' => '/agences/delete',
+        'controller' => [AgenciesController::class, 'delete']
+    ],
+
+    [
         'method' => 'GET',
         'path' => '/trajets',
         'controller' => [TripController::class, 'index']
@@ -86,5 +104,24 @@ return [
         'method' => 'GET',
         'path' => '/trajets/edit',
         'controller' => [TripController::class, 'edit']
+    ],
+
+    [
+        'method' => 'POST',
+        'path' => '/trajets/ajouter',
+        'controller' => [TripController::class, 'store']
+    ],
+
+    [
+        'method' => 'POST',
+        'path' => '/trajets/edit',
+        'controller' => [TripController::class, 'update']
+    ],
+
+    [
+        'method' => 'POST',
+        'path' => '/trajets/delete',
+        'controller' => [TripController::class, 'delete']
     ]
+
 ];

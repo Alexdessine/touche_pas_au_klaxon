@@ -1,5 +1,8 @@
-<form class="container mt-4">
+<form class="container mt-4" action="<?= htmlspecialchars($action ?? '/trajets/ajouter') ?>" method="POST">
 
+<?php if (isset($trip['id'])): ?>
+    <input type="hidden" name="id" value="<?= htmlspecialchars($trip['id']) ?>">
+<?php endif; ?>
   <div class="row">
 
     <!-- Colonne gauche : Départ -->
@@ -13,7 +16,7 @@
           <option value="">Sélectionnez une agence</option>
           <option value="paris">Paris</option>
           <option value="lyon">Lyon</option>
-          <option value="marseille">Marseille</option>
+          <option value="marseille">>Marseille</option>
         </select>
       </div>
 
@@ -62,16 +65,16 @@
   <div class="row mt-3">
     <div class="col-md-6 mx-auto">
       <label for="InputSeats" class="form-label">Nombre de places disponibles</label>
-      <input type="number" class="form-control" id="InputSeats" min="1" max="5">
+      <input type="number" class="form-control" id="InputSeats" min="1" max="5" value="">
     </div>
   </div>
 
   <!-- Bouton centré -->
   <div class="row mt-4">
     <div class="col text-center">
-      <button type="submit" class="btn btn-primary px-4">
-        <?=  htmlspecialchars($submitLabel ?? 'Enregistrer') ?>
-      </button>
+        <button type="submit" class="btn btn-primary px-4">
+            <?=  htmlspecialchars($submitLabel ?? 'Enregistrer') ?>
+        </button>
     </div>
   </div>
 
