@@ -1,5 +1,14 @@
+<?php 
+// views/admin/dashboard.php
+// Ce fichier affiche la page d'accueil de l'administrateur avec les trajets proposés et les actions possibles (voir, éditer, supprimer).
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header('Location: /login');
+    exit();
+}
+?>
 <h1>Agences</h1>
 <p>Liste des agences présentes dans différentes villes.</p>
+<a href="/agences/ajouter" class="btn btn-success mb-4">Ajouter une agence</a></button>
 <table class="table table-striped">
     <thead>
         <tr class="fond text-center">
@@ -11,84 +20,84 @@
         <tr class="text-center">
             <td>Paris</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Lyon</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Marseille</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Toulouse</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Nice</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Nantes</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Strasbourg</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Montpellier</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Bordeaux</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Lille</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Rennes</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <tr class="text-center">
             <td>Reims</td>
             <td>
-                <a href="#"><i class="fa-solid fa-pen"></i></a>
+                <a href="/agences/edit"><i class="fa-solid fa-pen"></i></a>
                 <a href="#"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>

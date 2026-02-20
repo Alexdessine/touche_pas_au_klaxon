@@ -60,7 +60,31 @@ return [
 
     [
         'method' => 'GET',
+        'path' => '/agences/ajouter',
+        'controller' => [AgenciesController::class, 'create']
+    ],
+
+    [
+        'method' => 'GET',
+        'path' => '/agences/edit',
+        'controller' => [AgenciesController::class, 'edit']
+    ],
+
+    [
+        'method' => 'GET',
         'path' => '/trajets',
         'controller' => [TripController::class, 'index']
+    ],
+
+    [
+        'method' => 'GET',
+        'path' => '/trajets/ajouter',
+        'controller' => [TripController::class, 'create']
+    ],
+
+    [
+        'method' => 'GET',
+        'path' => '/trajets/edit',
+        'controller' => [TripController::class, 'edit']
     ]
 ];

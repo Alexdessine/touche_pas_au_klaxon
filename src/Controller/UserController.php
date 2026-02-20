@@ -16,6 +16,11 @@ final class UserController
             exit;
         }
 
+        if (!Auth::isAdmin()) {
+            header('Location: /');
+            exit;
+        }
+
         View::render('users/index', [
             'title' => 'Utilisateurs - Touche Pas au Klaxon',
         ]);

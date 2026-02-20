@@ -27,4 +27,30 @@ final class TripController
         header('Location: /');
         exit;
     }
+
+    public function create(): void
+    {
+        if (!Auth::check()) {
+            header('Location: /login');
+            exit;
+        }
+
+        View::render('trip/create', [
+            'title' => 'Créer un trajet - Touche Pas au Klaxon',
+            'submitLabel' => 'Ajouter le trajet'
+        ]);
+    }
+
+    public function edit(): void
+    {
+        if (!Auth::check()) {
+            header('Location: /login');
+            exit;
+        }
+
+        View::render('trip/edit', [
+            'title' => 'Modifier un trajet - Touche Pas au Klaxon',
+            'submitLabel' => 'Modifier le trajet'
+        ]);
+    }
 }

@@ -26,6 +26,11 @@ class Auth
         return ($_SESSION['user']['role'] ?? '') === 'admin';
     }
 
+    public static function isUser(): bool
+    {
+        return ($_SESSION['user']['role'] ?? '') === 'user';
+    }
+
     public static function logout(): void
     {
         unset($_SESSION['user']);
