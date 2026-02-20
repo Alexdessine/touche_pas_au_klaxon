@@ -1,0 +1,48 @@
+nav {
+    ul{
+        a{
+            color: var(--text-main);
+            text-decoration: none;
+            &:hover {
+                color: var(--text-main);
+            }
+        }
+        li.admin {
+            background: $success;
+            transition: background-color 0.3s ease;
+        
+            &:hover{
+                background-color: darken($success, 10%);
+            }
+        }
+    }
+    .left{
+        a{
+            color: $text-main;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1.8em;
+            font-weight: bold;
+            &:hover {
+                color: darken($text-main, 10%);
+            }
+        }
+    }
+    .right{
+        a{
+            color: $text-main;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            &:hover {
+                color: darken($text-main, 10%);
+            }
+        }
+        i.fa-solid.fa-right-from-bracket {
+            font-size: 1.5em;
+        }
+    }
+}
+i.fa-solid.fa-left-to-bracket {
+    font-size: 1.5em;
+    margin-right: 4px;
+}

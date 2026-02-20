@@ -1,0 +1,56 @@
+// Styles personnalisés
+body {
+    background-color: $body-bg;
+    color: $body-color;
+}
+
+// Icône poubelle en rouge
+.fa-trash {
+    color: $danger;
+}
+
+.fa-pen {
+    color: $success;
+}
+
+table.table {
+    width: 100%;
+    margin: auto;
+    border: 2px solid $text-main;
+    border-collapse: collapse; // recommandé pour un rendu propre
+
+    thead tr.fond th{
+        background-color: $primary;
+        border: 1px solid white;
+    }
+
+    td {
+        border: 1px solid $text-main;
+    }
+}
+
+.modal-body{
+    p{
+        span{
+            a{
+                color: $text-main;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: darken($text-main, 10%);
+                }
+            }
+        }
+    }
+}
+
+.btn.btn-body-color {
+    background-color: $success;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($success, 10%);
+    }
+}

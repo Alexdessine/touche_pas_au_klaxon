@@ -1,0 +1,20 @@
+{
+    "name": "touche_pas_au_klaxon",
+    "version": "1.0.0",
+    "description": "A simple PHP application",
+    "main": "index.php",
+    "scripts": {
+        "sass": "sass --quiet-deps --watch public/scss:public/css",
+        "dev": "browser-sync start --proxy \"localhost:8080\" --files \"public/css/*.css, views/**/*.php\"",
+        "start": "concurrently \"npm run sass\" \"npm run dev\""
+    },
+    "author": "Alexandre Bourlier",
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "^5.3.8",
+        "concurrently": "^9.2.1"
+    },
+    "devDependencies": {
+        "browser-sync": "^3.0.4"
+    }
+}
