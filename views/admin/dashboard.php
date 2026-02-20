@@ -1,3 +1,11 @@
+<?php 
+// views/admin/dashboard.php
+// Ce fichier affiche la page d'accueil de l'administrateur avec les trajets proposés et les actions possibles (voir, éditer, supprimer).
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header('Location: /login');
+    exit();
+}
+?>
 <h1>
     Bienvenue sur la page d'accueil de Touche Pas au Klaxon !
 </h1>

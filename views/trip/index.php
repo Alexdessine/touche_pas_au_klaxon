@@ -1,0 +1,1 @@
+<h1>Bienvenue sur la page des trajets de l'application</h1>
