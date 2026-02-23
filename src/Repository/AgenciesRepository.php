@@ -72,4 +72,22 @@ final class AgenciesRepository
         ]);
         return (int) $this->pdo->lastInsertId();
     }
+
+    public function update(int $id, string $name): void
+    {
+        $sql = "UPDATE agencies SET name = :name WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+            'name' => $name,
+        ]);
+    }
+
+    public function delete(int $id): void
+    {
+        $sql = "DELETE FROM agencies WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    }
+
 }

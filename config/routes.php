@@ -66,7 +66,7 @@ return [
 
     [
         'method' => 'GET',
-        'path' => '/agences/edit',
+        'path' => '/agences/{id}/edit',
         'controller' => [AgenciesController::class, 'edit']
     ],
 
@@ -78,13 +78,13 @@ return [
 
     [
         'method' => 'POST',
-        'path' => '/agences/edit',
+        'path' => '/agences/{id}/edit',
         'controller' => [AgenciesController::class, 'update']
     ],
 
     [
         'method' => 'POST',
-        'path' => '/agences/delete',
+        'path' => '/agences/{id}/delete',
         'controller' => [AgenciesController::class, 'delete']
     ],
 

@@ -22,10 +22,10 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         <tr class="text-center">
             <td><?= htmlspecialchars($agency->getName()) ?></td>
             <td>
-                <a href="/agences/edit?id=<?= htmlspecialchars($agency->getId()) ?>"><i class="fa-solid fa-pen"></i></a>
-                <form action="/agences/delete" method="POST" class="d-inline">
+                <a href="/agences/<?= $agency->getId() ?>/edit"><i class="fa-solid fa-pen"></i></a>
+                <form action="/agences/<?= $agency->getId() ?>/delete" method="POST" class="d-inline">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($agency->getId()) ?>">
-                    <button type="submit" class="btn btn-link p-0 border-0"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette agence ?')">
+                    <button type="submit" class="btn btn-link p-0 border-0"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer l\'agence de <?= htmlspecialchars($agency->getName()) ?> ?')">
                         <i class="fa-solid fa-trash text-danger"></i>
                     </button>
                 </form>
