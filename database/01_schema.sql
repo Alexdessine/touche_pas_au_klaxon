@@ -35,7 +35,7 @@ CREATE TABLE users (
 -- Création de la table agencies
 create table agencies (
     id int auto_increment primary key,
-    name varchar(100) not null,
+    name varchar(100) not null UNIQUE,
     created_at timestamp default current_timestamp
 );
 

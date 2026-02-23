@@ -2,7 +2,7 @@
 <form class="container mt-4" action="<?= htmlspecialchars($action ?? '/agences/ajouter') ?>" method="POST">
 
 <?php if (isset($agency['id'])): ?>
-    <input type="hidden" name="id" value="<?= htmlspecialchars($agency['id']) ?>">
+    <input type="hidden" name="id" value="<?= htmlspecialchars((string)($agency['id'])) ?>">
 <?php endif; ?>
 
   <div class="row">
@@ -11,10 +11,18 @@
     <div class="col-md-12">
 
       <div class="mb-3">
-        <label for="InputCity2" class="form-label">Agence</label>
-        <input type="text" class="form-control" id="InputCity2" value="<?= htmlspecialchars($agency['name'] ?? '') ?>">
+        <label for="agencyName" class="form-label">Agence</label>
+        <input type="text" class="form-control" id="agencyName" name="name"
+              value="<?= htmlspecialchars((string)($agency['name'] ?? '')) ?>"
+              required maxlength="190">
+
+        <?php if (!empty($errors['name'])): ?>
+          <div class="text-danger mt-1">
+            <?= htmlspecialchars($errors['name']) ?>
+          </div>
+        <?php endif; ?>
       </div>
-    </div>
+
 
   </div>
 

@@ -10,7 +10,7 @@
             <?php if (Auth::isAdmin()): ?>
         <ul class=" d-flex list-style-none list-unstyled flex-row align-items-center justify-content-center gap-3 mt-3">
             <li class="admin rounded p-2 text-light"><a class="d-flex align-items-center gap-2" href="/utilisateurs">Utilisateurs<span class="badge text-bg-primary rounded-pill"><?= htmlspecialchars((string)($userCount ?? 0)) ?></span></a></li>
-            <li class="admin rounded p-2 text-light"><a class="d-flex align-items-center gap-2" href="/agences">Agences<span class="badge text-bg-primary rounded-pill">5</span></a></li>
+            <li class="admin rounded p-2 text-light"><a class="d-flex align-items-center gap-2" href="/agences">Agences<span class="badge text-bg-primary rounded-pill"><?= htmlspecialchars((string)($agencyCount ?? 0)) ?></span></a></li>
             <li class="admin rounded p-2 text-light"><a class="d-flex align-items-center gap-2" href="/trajets">Trajets<span class="badge text-bg-primary rounded-pill">8</span></a></li>
         </ul>
         <?php endif; ?>

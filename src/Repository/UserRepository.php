@@ -49,6 +49,7 @@ final class UserRepository
     {
         $sql = "SELECT id, firstname, lastname, email, password, phone, role, created_at
                 FROM users
+                WHERE role != 'admin'
                 ORDER BY lastname ASC, firstname ASC";
 
         $stmt = $this->pdo->query($sql);
