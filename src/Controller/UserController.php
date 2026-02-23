@@ -12,11 +12,17 @@ final class UserController extends BaseController
 {
     public function index(): void
     {
-        $this->requireAuth();
-        $this->requireAdmin();
+        // $this->requireAuth();
+        // $this->requireAdmin();
+
+        $pdo = \App\Core\Connection::getPdo();
+        $userRepo = new \App\Repository\UserRepository($pdo);
+
+        $users = $userRepo->findAll();
 
         View::render('users/index', [
             'title' => 'Utilisateurs - Touche Pas au Klaxon',
+            'users' => $users,
         ]);
     }
 
@@ -26,4 +32,6 @@ final class UserController extends BaseController
         header('Location: /');
         exit;
     }
+
+    
 }

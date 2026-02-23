@@ -83,4 +83,10 @@ final class UserRepository
 
         return $user;
     }
+
+    public function count(): int
+    {
+        $sql = "SELECT COUNT(*) FROM users";
+        return (int) $this->pdo->query($sql)->fetchColumn();
+    }
 }

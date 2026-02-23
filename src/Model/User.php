@@ -65,7 +65,7 @@ class User
         return $this->password;
     }
 
-    private function getPhone(): string
+    public function getPhone(): string
     {
         return $this->phone;
     }
