@@ -105,4 +105,29 @@ final class TripRepositoryTest extends TestCase
 
         $this->assertTrue(true); // évite “risky test”
     }
+
+    public function testDeleteExecutesDeleteWithExpectedParameterKey(): void
+    {
+        // Important : ton code fait execute(['id' => $id]) (sans ':')
+        $expectedSql = "DELETE FROM trips WHERE id = :id";
+
+        $stmt = $this->createMock(PDOStatement::class);
+        $stmt->expects($this->once())
+            ->method('execute')
+            ->with(['id' => 9])
+            ->willReturn(true);
+
+        $pdo = $this->createMock(PDO::class);
+        $pdo->expects($this->once())
+            ->method('prepare')
+            ->with($expectedSql)
+            ->willReturn($stmt);
+
+        $repo = new TripRepository($pdo);
+
+        $repo->delete(9);
+
+        $this->assertTrue(true);
+    }
+
 }
