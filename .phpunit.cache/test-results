@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"TripRepositoryTest::testCreateInsertsTripAndReturnsLastInsertId":0.032,"TripRepositoryTest::testUpdateExecutesUpdateWithExpectedParameters":0.006}}

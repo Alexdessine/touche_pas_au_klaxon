@@ -58,4 +58,51 @@ final class TripRepositoryTest extends TestCase
 
         $this->assertSame(123, $id);
     }
+
+    public function testUpdateExecutesUpdateWithExpectedParameters(): void
+    {
+        $trip = new Trips(
+            userId: 42,
+            departureAgencyId: 10,
+            arrivalAgencyId: 20,
+            departureTime: new DateTimeImmutable('2026-03-02 09:00:00'),
+            arrivalTime: new DateTimeImmutable('2026-03-02 11:00:00'),
+            availableSeats: 2
+        );
+        $trip->setId(777);
+
+        $expectedSql = "UPDATE trips
+                SET departure_agency_id = :departure_agency_id,
+                    arrival_agency_id = :arrival_agency_id,
+                    departure_time = :departure_time,
+                    arrival_time = :arrival_time,
+                    available_seats = :available_seats
+                WHERE id = :id";
+
+        $stmt = $this->createMock(PDOStatement::class);
+        $stmt->expects($this->once())
+            ->method('execute')
+            ->with([
+                ':departure_agency_id' => 10,
+                ':arrival_agency_id'   => 20,
+                ':departure_time'      => '2026-03-02 09:00:00',
+                ':arrival_time'        => '2026-03-02 11:00:00',
+                ':available_seats'     => 2,
+                ':id'                  => 777,
+            ])
+            ->willReturn(true);
+
+        $pdo = $this->createMock(PDO::class);
+        $pdo->expects($this->once())
+            ->method('prepare')
+            ->with($expectedSql)
+            ->willReturn($stmt);
+
+        $repo = new TripRepository($pdo);
+
+        // Méthode void : on vérifie par expectations sur PDOStatement::execute()
+        $repo->update($trip);
+
+        $this->assertTrue(true); // évite “risky test”
+    }
 }
