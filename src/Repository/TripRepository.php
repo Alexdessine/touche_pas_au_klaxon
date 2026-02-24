@@ -243,7 +243,7 @@ final class TripRepository
      */
     public function count(): int
     {
-        $sql = "SELECT COUNT(*) FROM trips";
+        $sql = "SELECT COUNT(*) FROM trips WHERE departure_time >= NOW() AND available_seats > 0";
         return (int) $this->pdo->query($sql)->fetchColumn();
     }
 }
