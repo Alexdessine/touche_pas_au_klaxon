@@ -11,8 +11,18 @@ use App\Repository\AgenciesRepository;
 use App\Repository\TripRepository;
 use App\Repository\UserRepository;
 
+
+/**
+ * Contrôleur pour la gestion des trajets.
+ */
 final class TripController extends BaseController
 {
+    /**
+     * Affiche la liste des trajets avec les informations associées (agences, utilisateurs).
+     * Le contrôleur prépare des tableaux de correspondance (id -> nom) pour les agences et les utilisateurs afin de faciliter l'affichage dans la vue.
+     * Il gère également les messages d'alerte (succès/erreur) via la session.
+     * @return void
+     */
     public function index(): void
     {
         $this->requireAuth();
@@ -35,13 +45,15 @@ final class TripController extends BaseController
         }
 
         $userNamesById = [];
+        $userPhoneById = [];
+        $userEmailById = [];
         foreach ($currentUserId as $user) {
             $userNamesById[(int)$user->getId()] = (string)$user->getFirstname() . ' ' . (string)$user->getLastname();
             $userPhoneById[(int)$user->getId()] = (string)$user->getPhone();
             $userEmailById[(int)$user->getId()] = (string)$user->getEmail();
         }
 
-        // Ton système d’alert (si tu veux l’utiliser ici)
+        // Gestion des messages d'alerte (succès/erreur)
         $alert = $_SESSION['alert'] ?? null;
         $messageType = $_SESSION['messageType'] ?? 'info';
         unset($_SESSION['alert'], $_SESSION['messageType']);
@@ -58,6 +70,11 @@ final class TripController extends BaseController
         ]);
     }
 
+    /**
+     * Traite la déconnexion de l'utilisateur.
+     * Il appelle la méthode de déconnexion de la classe Auth, puis redirige l'utilisateur vers la page d'accueil.
+     * @return void
+     */
     public function logout(): void
     {
         Auth::logout();
@@ -65,6 +82,13 @@ final class TripController extends BaseController
         exit;
     }
 
+    /**
+     * Affiche le formulaire de création d'un trajet.
+     * Il vérifie que l'utilisateur est authentifié, puis récupère la liste des agences et les informations de l'utilisateur connecté pour les passer à la vue.
+     * La vue affichera un formulaire avec des champs pour sélectionner les agences de départ et d
+     * arrivée, les dates et heures de départ et d'arrivée, et le nombre de places disponibles.
+     * @return void
+     */
     public function create(): void
     {
         $this->requireAuth();
@@ -90,6 +114,14 @@ final class TripController extends BaseController
         ]);
     }
 
+    /**
+     * Traite la soumission du formulaire de création d'un trajet.
+     * Il effectue une lecture défensive des données POST, valide les champs selon les règles
+     * définies, et enregistre le trajet dans la base de données si toutes les validations passent.
+     * En cas d'erreurs, il ré-affiche le formulaire avec les messages d'erreur et les données précédemment saisies.
+     * En cas de succès, il redirige l'utilisateur vers la liste des trajets avec un message de succès.
+     * @return void
+     */
     public function store(): void
     {
         $this->requireAuth();
@@ -260,6 +292,13 @@ final class TripController extends BaseController
         exit;
     }
 
+    /**
+    * Affiche le formulaire de modification d'un trajet.
+    * Il vérifie que l'utilisateur est authentifié, puis récupère le trajet à modifier, la liste des agences et les informations de l'utilisateur connecté pour les passer à la vue.
+    * La vue affichera un formulaire pré-rempli avec les données du trajet, et permettra de modifier les champs similaires à la création.
+    * @param int $id Identifiant du trajet à modifier
+    * @return void
+    */
     public function edit(int $id): void
     {
         $this->requireAuth();
@@ -307,6 +346,14 @@ final class TripController extends BaseController
         ]);
     }
 
+    /**
+     * Traite la soumission du formulaire de modification d'un trajet.
+     * Il effectue une lecture défensive des données POST, valide les champs selon les règles définies, et met à jour le trajet dans la base de données si toutes les validations passent.
+     * En cas d'erreurs, il ré-affiche le formulaire avec les messages d'erreur et les données précédemment saisies.
+     * En cas de succès, il redirige l'utilisateur vers la liste des trajets avec un message de succès.
+     * @param int $id Identifiant du trajet à modifier
+     * @return void
+     */
     public function update(int $id): void
     {
         $this->requireAuth();
@@ -504,6 +551,12 @@ final class TripController extends BaseController
         exit;
     }
 
+    /**
+    * Traite la suppression d'un trajet.
+    * Il vérifie que l'utilisateur est authentifié, puis supprime le trajet de la base de données.
+    * En cas de succès, il redirige l'utilisateur vers la liste des trajets avec un message de succès.
+    * @return void
+    */
     public function delete(): void
     {
         $this->requireAuth();

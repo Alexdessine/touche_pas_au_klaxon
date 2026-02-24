@@ -8,8 +8,16 @@ use App\Core\Auth;
 use App\Core\BaseController;
 use App\Core\View;
 
+/**
+ * Contrôleur pour la gestion des utilisateurs.
+ */
 final class UserController extends BaseController
 {
+    /**
+     * Affiche la liste des utilisateurs.
+     *
+     * @return void
+     */
     public function index(): void
     {
         $this->requireAuth();
@@ -26,6 +34,11 @@ final class UserController extends BaseController
         ]);
     }
 
+    /**
+     * Traite la déconnexion de l'utilisateur.
+     *
+     * @return void
+     */
     public function logout(): void
     {
         Auth::logout();

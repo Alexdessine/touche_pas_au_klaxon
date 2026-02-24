@@ -1,6 +1,8 @@
 <?php 
-// views/admin/dashboard.php
-// Ce fichier affiche la page d'accueil de l'administrateur avec les trajets proposés et les actions possibles (voir, éditer, supprimer).
+/**
+ * Vue pour afficher la liste des agences de transport dans l'administration.
+ * Affiche un tableau avec les noms des agences et des actions pour éditer ou supprimer chaque
+ */
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header('Location: /login');
     exit();

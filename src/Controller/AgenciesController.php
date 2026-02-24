@@ -8,8 +8,17 @@ use App\Core\Auth;
 use App\Core\BaseController;
 use App\Core\View;
 
+
+
+/**
+ * Contrôleur pour la gestion des agences.
+ */
 final class AgenciesController extends BaseController
 {
+    /**     * Affiche la liste des agences.
+     *
+     * @return void
+     */
     public function index(): void
     {
         $this->requireAuth();
@@ -30,6 +39,11 @@ final class AgenciesController extends BaseController
         ]);
     }
 
+    /**     
+     * Affiche le formulaire de création d'une agence.
+     *
+     * @return void
+     */
     public function create(): void
     {
         $this->requireAuth();
@@ -43,6 +57,11 @@ final class AgenciesController extends BaseController
         ]);
     }
 
+    /**
+     * Traite la soumission du formulaire de création d'une agence.
+     *
+     * @return void
+     */
     public function store(): void
     {
         $this->requireAuth();
@@ -106,6 +125,12 @@ final class AgenciesController extends BaseController
         exit;
     }
 
+    /**
+     * Affiche le formulaire de modification d'une agence.
+     *
+     * @param int $id Identifiant de l'agence à modifier
+     * @return void
+     */
     public function edit(int $id): void
     {
         $this->requireAuth();
@@ -134,7 +159,12 @@ final class AgenciesController extends BaseController
         ]);
     }
 
-
+    /**
+     * Traite la soumission du formulaire de modification d'une agence.
+     *
+     * @param int $id Identifiant de l'agence à modifier
+     * @return void
+     */
     public function update(int $id): void
     {
         $this->requireAuth();
@@ -194,6 +224,11 @@ final class AgenciesController extends BaseController
     }
 
 
+    /**     
+     * Traite la suppression d'une agence.
+     *
+     * @return void
+     */
     public function delete(): void
     {
         $this->requireAuth();
@@ -215,6 +250,11 @@ final class AgenciesController extends BaseController
         exit;
     }
 
+    /**     
+     * Déconnecte l'utilisateur actuel.
+     *
+     * @return void
+     */
     public function logout(): void
     {
         Auth::logout();

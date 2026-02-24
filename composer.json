@@ -11,6 +11,9 @@
             "App\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "phpstan": "phpstan analyse -c phpstan.neon"
+    },
     "authors": [
         {
             "name": "Alexdessine",
