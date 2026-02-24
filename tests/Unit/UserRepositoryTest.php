@@ -32,4 +32,41 @@ final class UserRepositoryTest extends TestCase
 
         $this->assertNull($repo->findByEmail('missing@example.com'));
     }
+
+    public function testFindByEmailHydratesUserWhenFound(): void
+    {
+        $row = [
+            'id'         => 10,
+            'firstname'  => 'Alex',
+            'lastname'   => 'Martin',
+            'email'      => 'alex@example.com',
+            'password'   => '$2y$10$hashhashhash', // hash factice, mais string OK
+            'phone'      => '0600000000',
+            'role'       => 'user',
+            'created_at' => '2026-02-01 12:00:00',
+        ];
+
+        $stmt = $this->createMock(PDOStatement::class);
+        $stmt->expects($this->once())
+            ->method('execute')
+            ->with(['email' => 'alex@example.com'])
+            ->willReturn(true);
+
+        $stmt->expects($this->once())
+            ->method('fetch')
+            ->willReturn($row);
+
+        $pdo = $this->createMock(PDO::class);
+        $pdo->expects($this->once())
+            ->method('prepare')
+            ->willReturn($stmt);
+
+        $repo = new UserRepository($pdo);
+
+        $user = $repo->findByEmail('alex@example.com');
+
+        $this->assertNotNull($user);
+
+        $this->assertSame('App\Model\User', $user::class);
+    }
 }

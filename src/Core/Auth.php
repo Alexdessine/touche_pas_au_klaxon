@@ -21,7 +21,10 @@ final class Auth
     public static function logout(): void
     {
         unset($_SESSION['user']);
-        session_regenerate_id(true);
+
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_regenerate_id(true);
+        }
     }
 
     public static function attempt(UserRepository $users, string $email, string $password): bool
@@ -39,7 +42,9 @@ final class Auth
             return false;
         }
 
-        session_regenerate_id(true);
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_regenerate_id(true);
+        }
 
         $_SESSION['user'] = [
             'id' => $user->getId(),
