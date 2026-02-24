@@ -9,8 +9,20 @@ use App\Repository\TripRepository;
 use App\Repository\UserRepository;
 use Throwable;
 
+
+/**
+ * Classe de gestion des vues.
+ * Fournit des méthodes pour rendre les templates avec les données.
+ */
 final class View
 {
+    /**
+     * Renders a template with the given data.
+     *
+     * @param string $template The template name
+     * @param array<string, mixed> $data The data to pass to the template
+     * @return void
+     */
     public static function render(string $template, array $data = []): void
     {
         try {
@@ -22,9 +34,9 @@ final class View
                 $data['tripCount'] = (new TripRepository($pdo))->count();
             }
         } catch (Throwable $e) {
-            $data['userCount'] = $data['userCount'] ?? 0;
-            $data['agencyCount'] = $data['agencyCount'] ?? 0;
-            $data['tripCount'] = $data['tripCount'] ?? 0;
+            $data['userCount'] = (int)($data['userCount'] ?? 0);
+            $data['agencyCount'] = (int)($data['agencyCount'] ?? 0);
+            $data['tripCount'] = (int)($data['tripCount'] ?? 0);
             error_log((string) $e);
         }
 

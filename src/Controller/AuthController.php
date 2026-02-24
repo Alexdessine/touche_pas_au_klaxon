@@ -9,8 +9,18 @@ use App\Core\Auth;
 use App\Repository\UserRepository;
 use App\Core\Connection;
 
+
+/** 
+ * Contrôleur pour la gestion de l'authentification.
+ */
 final class AuthController
 {
+
+    /**     
+     * Affiche le formulaire de connexion.
+     *
+     * @return void
+     */
     public function showLoginForm(): void
     {
         if (Auth::check()) {
@@ -23,6 +33,11 @@ final class AuthController
         ]);
     }
 
+    /**     
+     * Traite la soumission du formulaire de connexion.
+     *
+     * @return void
+     */
     public function login(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -58,7 +73,7 @@ final class AuthController
             return;
         }
 
-        $pdo = Connection::getPdo(); // adapte à ton projet
+        $pdo = Connection::getPdo();
         $userRepo = new UserRepository($pdo);
 
         $ok = Auth::attempt($userRepo, (string) $email, (string) $password);
@@ -84,6 +99,11 @@ final class AuthController
         exit;
     }
 
+    /**     
+    * Traite la déconnexion de l'utilisateur.
+    *
+    * @return void
+    */
     public function logout(): void
     {
         Auth::logout();

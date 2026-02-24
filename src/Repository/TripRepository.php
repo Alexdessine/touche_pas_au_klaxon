@@ -8,15 +8,32 @@ use App\Model\Trips;
 use DateTimeImmutable;  
 use PDO;
 
-
+/**
+ * Accès aux données des trajets (table `trips`).
+ *
+ * Cette classe contient uniquement des opérations SQL (via PDO)
+ * et retourne des objets métier {@see Trips}.
+ *
+ * Responsabilités principales :
+ * - Lire les trajets futurs avec places disponibles
+ * - Lire un trajet par identifiant
+ * - Créer / mettre à jour / supprimer un trajet
+ * - Vérifier l'existence de doublons (création / mise à jour)
+ */
 final class TripRepository
 {
+    /**
+     * @param PDO $pdo Connexion PDO configurée (exceptions, charset, etc.)
+     */
     public function __construct(private PDO $pdo)
     {
     }
 
     /**
-     * @return Trips[]
+     * Retourne les trajets futurs ayant encore des places disponibles,
+     * triés par date de départ croissante.
+     *
+     * @return list<Trips> Liste de trajets hydratés
      */
     public function findAll(): array
     {
@@ -27,6 +44,7 @@ final class TripRepository
 
         $stmt = $this->pdo->query($sql);
 
+        /** @var list<Trips> $trips */
         $trips = [];
         while ($row = $stmt->fetch()) {
             $trips[] = $this->hydrateTrip($row);
@@ -35,6 +53,12 @@ final class TripRepository
         return $trips;
     }
 
+    /**
+     * Retourne un trajet par son identifiant.
+     *
+     * @param int $id Identifiant du trajet
+     * @return Trips|null Le trajet trouvé, sinon null
+     */
     public function findById(int $id): ?Trips
     {
         $sql = "SELECT id, user_id, departure_agency_id, arrival_agency_id, departure_time, arrival_time, available_seats
@@ -45,6 +69,7 @@ final class TripRepository
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
 
+        /** @var array<string, mixed>|false $row */
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row === false) {
             return null;
@@ -53,6 +78,15 @@ final class TripRepository
         return $this->hydrateTrip($row);
     }
 
+    /**
+     * Indique si un trajet identique existe déjà (départ/arrivée/horaires).
+     *
+     * @param int $departureAgencyId Identifiant de l'agence de départ
+     * @param int $arrivalAgencyId Identifiant de l'agence d'arrivée
+     * @param DateTimeImmutable $departureTime Date/heure de départ
+     * @param DateTimeImmutable $arrivalTime Date/heure d'arrivée
+     * @return bool True si un doublon existe, sinon false
+     */
     public function existsDuplicate(
         int $departureAgencyId,
         int $arrivalAgencyId,
@@ -76,6 +110,12 @@ final class TripRepository
         return (bool) $stmt->fetchColumn();
     }
 
+    /**
+     * Crée un nouveau trajet en base de données.
+     *
+     * @param Trips $trip Objet trajet à persister
+     * @return int Identifiant du trajet créé
+     */
     public function create(Trips $trip): int
     {
         $sql = "INSERT INTO trips
@@ -97,6 +137,12 @@ final class TripRepository
         return (int) $this->pdo->lastInsertId();
     }
 
+    /**
+     * Met à jour un trajet existant en base de données.
+     *
+     * @param Trips $trip Trajet à mettre à jour (doit contenir un id)
+     * @return void
+     */
     public function update(Trips $trip): void
     {
         $sql = "UPDATE trips
@@ -118,6 +164,17 @@ final class TripRepository
         ]);
     }
 
+    /**
+     * Indique si un trajet identique existe déjà, en excluant un identifiant
+     * (utile lors d'une modification).
+     *
+     * @param int $excludeId Identifiant du trajet à exclure de la recherche
+     * @param int $departureAgencyId Identifiant de l'agence de départ
+     * @param int $arrivalAgencyId Identifiant de l'agence d'arrivée
+     * @param DateTimeImmutable $departureTime Date/heure de départ
+     * @param DateTimeImmutable $arrivalTime Date/heure d'arrivée
+     * @return bool True si un doublon existe, sinon false
+     */
     public function existsDuplicateExcludingId(
         int $excludeId,
         int $departureAgencyId,
@@ -146,6 +203,12 @@ final class TripRepository
         return (bool)$stmt->fetchColumn();
     }
 
+    /**
+     * Hydrate un objet {@see Trips} à partir d'une ligne SQL.
+     *
+     * @param array<string, mixed> $data Ligne issue d'un fetch(PDO::FETCH_ASSOC)
+     * @return Trips Trajet hydraté
+     */
     private function hydrateTrip(array $data): Trips
     {
         $trip = new Trips(
@@ -160,6 +223,12 @@ final class TripRepository
         return $trip;
     }
 
+    /**
+     * Supprime un trajet par identifiant.
+     *
+     * @param int $id Identifiant du trajet à supprimer
+     * @return void
+     */
     public function delete(int $id): void
     {
         $sql = "DELETE FROM trips WHERE id = :id";
@@ -167,6 +236,11 @@ final class TripRepository
         $stmt->execute(['id' => $id]);
     }
 
+    /**
+     * Retourne le nombre total de trajets en base de données.
+     *
+     * @return int Nombre total de trajets
+     */
     public function count(): int
     {
         $sql = "SELECT COUNT(*) FROM trips";

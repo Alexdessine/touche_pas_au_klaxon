@@ -8,12 +8,26 @@ use App\Model\User;
 use DateTimeImmutable;
 use PDO;
 
+/**
+ * Repository pour la table "users".
+ *
+ * Fournit des méthodes pour trouver, créer, mettre à jour et supprimer des utilisateurs.
+ */
 final class UserRepository
 {
+    /**
+     * @param PDO $pdo Connexion PDO configurée (exceptions, charset, etc.)
+     */
     public function __construct(private PDO $pdo)
     {
     }
 
+    /**
+     * Retourne un utilisateur par son identifiant.
+     *
+     * @param int $id Identifiant de l'utilisateur
+     * @return User|null L'utilisateur trouvé, sinon null
+     */
     public function findById(int $id): ?User
     {
         $sql = "SELECT id, firstname, lastname, email, password, phone, role, created_at
@@ -28,6 +42,12 @@ final class UserRepository
         return $row ? $this->hydrateUser($row) : null;
     }
 
+    /**
+    * Retourne un utilisateur par son adresse email.
+    *
+    * @param string $email Adresse email de l'utilisateur
+    * @return User|null L'utilisateur trouvé, sinon null
+    */
     public function findByEmail(string $email): ?User
     {
         $sql = "SELECT id, firstname, lastname, email, password, phone, role, created_at
@@ -43,7 +63,9 @@ final class UserRepository
     }
 
     /**
-     * @return User[]
+     * Retourne tous les utilisateurs (sauf les administrateurs).
+     *
+     * @return User[] Liste d'utilisateurs hydratés
      */
     public function findAll(): array
     {
@@ -63,7 +85,10 @@ final class UserRepository
     }
 
     /**
-     * @param array<string, mixed> $row
+     * Hydrate un objet {@see User} à partir d'une ligne SQL.
+     *
+     * @param array<string, mixed> $row Ligne issue d'un fetch(PDO::FETCH_ASSOC)
+     * @return User Utilisateur hydraté
      */
     private function hydrateUser(array $row): User
     {
@@ -85,6 +110,11 @@ final class UserRepository
         return $user;
     }
 
+    /**
+    * Retourne le nombre total d'utilisateurs en base de données.
+    *
+    * @return int Nombre total d'utilisateurs
+    */
     public function count(): int
     {
         $sql = "SELECT COUNT(*) FROM users";

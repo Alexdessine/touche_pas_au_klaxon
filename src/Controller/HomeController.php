@@ -9,8 +9,16 @@ use App\Repository\AgenciesRepository;
 use App\Repository\TripRepository;
 use App\Repository\UserRepository;
 
+/**
+ * Contrôleur pour la page d'accueil.
+ */
 final class HomeController
 {
+    /**
+     * Affiche la page d'accueil avec les informations des voyages, agences et utilisateurs.
+     *
+     * @return void
+     */
     public function index(): void
     {
         $pdo = \App\Core\Connection::getPdo();
@@ -31,13 +39,15 @@ final class HomeController
         }
 
         $userNamesById = [];
+        $userPhoneById = [];
+        $userEmailById = [];
         foreach ($currentUserId as $user) {
             $userNamesById[(int)$user->getId()] = (string)$user->getFirstname() . ' ' . (string)$user->getLastname();
             $userPhoneById[(int)$user->getId()] = (string)$user->getPhone();
             $userEmailById[(int)$user->getId()] = (string)$user->getEmail();
         }
 
-        // Ton système d’alert (si tu veux l’utiliser ici)
+        
         $alert = $_SESSION['alert'] ?? null;
         $messageType = $_SESSION['messageType'] ?? 'info';
         unset($_SESSION['alert'], $_SESSION['messageType']);

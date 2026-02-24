@@ -11,8 +11,15 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(TripRepository::class)]
+
+/**
+ * Tests unitaires pour la classe TripRepository, couvrant les méthodes create(), update(), delete(), existsDuplicate() et existsDuplicateExcludingId().
+ */
 final class TripRepositoryTest extends TestCase
 {
+    /**
+     * Vérifie que la méthode create() exécute une requête d'insertion avec les paramètres attendus et retourne l'identifiant de la nouvelle entrée.
+     */
     public function testCreateInsertsTripAndReturnsLastInsertId(): void
     {
         $trip = new Trips(
@@ -59,6 +66,9 @@ final class TripRepositoryTest extends TestCase
         $this->assertSame(123, $id);
     }
 
+    /**
+     * Vérifie que la méthode update() exécute une requête de mise à jour avec les paramètres attendus pour un trajet donné.
+     */
     public function testUpdateExecutesUpdateWithExpectedParameters(): void
     {
         $trip = new Trips(
@@ -106,6 +116,9 @@ final class TripRepositoryTest extends TestCase
         $this->assertTrue(true); // évite “risky test”
     }
 
+    /**
+    * Vérifie que la méthode delete() exécute une requête de suppression avec le paramètre d'identifiant attendu.
+    */
     public function testDeleteExecutesDeleteWithExpectedParameterKey(): void
     {
         // Important : ton code fait execute(['id' => $id]) (sans ':')
@@ -130,6 +143,9 @@ final class TripRepositoryTest extends TestCase
         $this->assertTrue(true);
     }
 
+    /**
+     * Vérifie que la méthode existsDuplicate() retourne true lorsque fetchColumn() renvoie une valeur truthy, et false lorsque fetchColumn() renvoie une valeur falsy.
+     */
     public function testExistsDuplicateReturnsTrueWhenFetchColumnIsTruthy(): void
     {
         $departure = new DateTimeImmutable('2026-03-03 08:00:00');
@@ -160,6 +176,9 @@ final class TripRepositoryTest extends TestCase
         $this->assertTrue($repo->existsDuplicate(1, 2, $departure, $arrival));
     }
 
+    /**
+     * Vérifie que la méthode existsDuplicate() retourne false lorsque fetchColumn() renvoie une valeur falsy.
+     */
     public function testExistsDuplicateExcludingIdReturnsFalseWhenFetchColumnIsFalsy(): void
     {
         $departure = new DateTimeImmutable('2026-03-04 08:00:00');

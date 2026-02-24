@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+
+/**
+ * Classe de routage pour gérer les requêtes HTTP et les acheminer vers les contrôleurs appropriés.
+ */
 final class Router
 {
     /** @var array<int, array{method:string, path:string, controller: array{0: class-string, 1: string}}> */
@@ -17,37 +21,39 @@ final class Router
         $this->routes = $routes;
     }
 
+    /**
+    * Traite une requête HTTP en fonction de la méthode et de l'URI, et appelle le contrôleur correspondant.
+    *
+    * @param string $method La méthode HTTP (GET, POST, etc.)
+    * @param string $uri L'URI de la requête
+    * @return void
+    */
     public function dispatch(string $method, string $uri): void
-{
-    // IMPORTANT : enlever la query string (?x=1)
-    $path = parse_url($uri, PHP_URL_PATH) ?? '/';
+    {
+        $path = parse_url($uri, PHP_URL_PATH) ?? '/';
 
-    foreach ($this->routes as $route) {
-        if (($route['method'] ?? '') !== $method) {
-            continue;
+        foreach ($this->routes as $route) {
+            if ($route['method'] !== $method) {
+                continue;
+            }
+
+            $pattern = preg_replace('#\{id\}#', '([0-9]+)', $route['path']);
+            $pattern = '#^' . $pattern . '$#';
+
+            if (preg_match($pattern, $path, $matches)) {
+                array_shift($matches);
+
+                $matches = array_map('intval', $matches);
+
+                [$controllerClass, $action] = $route['controller'];
+                $controller = new $controllerClass();
+
+                $controller->$action(...$matches);
+                return;
+            }
         }
 
-        // Remplace {id} par un groupe de capture numérique
-        $pattern = preg_replace('#\{id\}#', '([0-9]+)', (string)($route['path'] ?? ''));
-        $pattern = '#^' . $pattern . '$#';
-
-        if (preg_match($pattern, $path, $matches)) {
-            array_shift($matches);
-
-            // Cast en int pour être compatible avec edit(int $id) en strict_types
-            $matches = array_map('intval', $matches);
-
-            [$controllerClass, $action] = $route['controller'];
-            $controller = new $controllerClass();
-
-            // Appel sans retourner une valeur (dispatch est void)
-            $controller->$action(...$matches);
-            return;
-        }
+        http_response_code(404);
+        echo '404 - Route non trouvée';
     }
-
-    http_response_code(404);
-    echo '404 - Route non trouvée';
-}
-
 }

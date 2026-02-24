@@ -6,10 +6,21 @@ namespace App\Core;
 
 use PDO;
 
+
+/**
+ * Classe de connexion à la base de données.
+ * Fournit une instance unique de PDO pour toute l'application.
+ */
 final class Connection
 {
     private static ?PDO $pdo = null;
 
+    /**
+     * Retourne une instance unique de PDO pour la connexion à la base de données.
+     *
+     * @return PDO L'instance de PDO
+     * @throws \RuntimeException Si les variables d'environnement nécessaires sont manquantes
+     */
     public static function getPdo(): PDO
     {
         if (self::$pdo instanceof PDO) {

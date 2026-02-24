@@ -9,8 +9,14 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(UserRepository::class)]
+/**
+ * Tests unitaires pour la classe UserRepository, couvrant la méthode findByEmail() dans les cas où l'utilisateur est trouvé ou non trouvé.
+ */
 final class UserRepositoryTest extends TestCase
 {
+    /**
+     * Vérifie que la méthode findByEmail() retourne null lorsque l'utilisateur n'est pas trouvé, en simulant un résultat de requête falsy.
+     */
     public function testFindByEmailReturnsNullWhenNotFound(): void
     {
         $stmt = $this->createMock(PDOStatement::class);
@@ -33,6 +39,9 @@ final class UserRepositoryTest extends TestCase
         $this->assertNull($repo->findByEmail('missing@example.com'));
     }
 
+    /**
+     * Vérifie que la méthode findByEmail() retourne un objet User correctement hydraté lorsque l'utilisateur est trouvé, en simulant un résultat de requête contenant les données de l'utilisateur.
+     */
     public function testFindByEmailHydratesUserWhenFound(): void
     {
         $row = [

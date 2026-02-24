@@ -3,13 +3,14 @@ name: CI
 on:
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   phpunit-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: . # <- change si ton PHP n'est pas à la racine
+        working-directory: .
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +27,7 @@ jobs:
           path: |
             vendor
             ~/.composer/cache
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-${{ hashFiles('composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
 
@@ -35,6 +36,37 @@ jobs:
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit -c phpunit.xml
+
+  phpstan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: |
+            vendor
+            ~/.composer/cache
+          key: ${{ runner.os }}-php-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run PHPStan
+        run: composer phpstan
 
   server-tests:
     runs-on: ubuntu-latest
