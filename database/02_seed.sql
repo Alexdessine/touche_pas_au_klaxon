@@ -25,30 +25,29 @@ ALTER TABLE users    AUTO_INCREMENT = 1;
 
 -- Insertion des utilisateurs
 INSERT INTO users (firstname, lastname, email, password, phone, role) VALUES
-('Martin', 'Alexandre', 'alexandre.martin@email.fr', '$2a$12$vHFvPiQR6qBXLXeBzgh0oO8CSuXWVZNH
-.i80qKyOX1JK3jsaOEywa', '0612345678', 'user'),
-('Dubois', 'Sophie', 'sophie.dubois@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0698765432', 'user'),
-('Bernard', 'Julien', 'julien.bernard@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0622446688', 'user'),
-('Moreau', 'Camille', 'camille.moreau@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0611223344', 'user'),
-('Lefèvre', 'Lucie', 'lucie.lefevre@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0777889900', 'user'),
-('Leroy', 'Thomas', 'thomas.leroy@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0655443322', 'user'),
-('Mercier', 'Emma', 'emma.mercier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0633221199', 'user'),
-('Roux', 'Chloé', 'chloe.roux@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0633221199', 'user'),
-('Petit', 'Maxime', 'maxime.petit@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0766778899', 'user'),
-('Garnier', 'Laura', 'laura.garnier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0688776655', 'user'),
-('Dupuis', 'Antoine', 'antoine.dupuis@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0744556677', 'user'),
-('Lefebvre', 'Emma', 'emma.lefebvre@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0699887766', 'user'),
-('Fontaine', 'Louis', 'louis.fontaine@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0655667788', 'user'),
-('Chevalier', 'Clara', 'clara.chevalier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0788990011', 'user'),
-('Robin', 'Nicolas', 'nicolas.robin@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0644332211', 'user'),
-('Gauthier', 'Marine', 'marine.gauthier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0677889922', 'user'),
-('Fournier', 'Pierre', 'pierre.fournier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0722334455', 'user'),
-('Renaud', 'Sophie', 'sophie.renaud@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0688665544', 'user'),
-('Girard', 'Sarah', 'sarah.girard@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0688665544', 'user'),
-('Lambert', 'Hugo', 'hugo.lambert@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0611223366', 'user'),
-('Masson', 'Julie', 'julie.masson@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0733445566', 'user'),
-('Henry', 'Arthur', 'arthur.henry@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0666554433', 'user'),
-('Admin', 'Admin', 'admin@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0777889900', 'admin');
+('Martin', 'Alexandre', 'alexandre.martin@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0612345678', 'user', '2026-02-23 13:45:05'),
+('Dubois', 'Sophie', 'sophie.dubois@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0698765432', 'user', '2026-02-23 13:45:05'),
+('Bernard', 'Julien', 'julien.bernard@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0622446688', 'user', '2026-02-23 13:45:05'),
+('Moreau', 'Camille', 'camille.moreau@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0611223344', 'user', '2026-02-23 13:45:05'),
+('Lefèvre', 'Lucie', 'lucie.lefevre@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0777889900', 'user', '2026-02-23 13:45:05'),
+('Leroy', 'Thomas', 'thomas.leroy@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0655443322', 'user', '2026-02-23 13:45:05'),
+('Mercier', 'Emma', 'emma.mercier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0633221199', 'user', '2026-02-23 13:45:05'),
+('Roux', 'Chloé', 'chloe.roux@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0633221199', 'user', '2026-02-23 13:45:05'),
+('Petit', 'Maxime', 'maxime.petit@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0766778899', 'user', '2026-02-23 13:45:05'),
+('Garnier', 'Laura', 'laura.garnier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0688776655', 'user', '2026-02-23 13:45:05'),
+('Dupuis', 'Antoine', 'antoine.dupuis@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0744556677', 'user', '2026-02-23 13:45:05'),
+('Lefebvre', 'Emma', 'emma.lefebvre@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0699887766', 'user', '2026-02-23 13:45:05'),
+('Fontaine', 'Louis', 'louis.fontaine@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0655667788', 'user', '2026-02-23 13:45:05'),
+('Chevalier', 'Clara', 'clara.chevalier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0788990011', 'user', '2026-02-23 13:45:05'),
+('Robin', 'Nicolas', 'nicolas.robin@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0644332211', 'user', '2026-02-23 13:45:05'),
+('Gauthier', 'Marine', 'marine.gauthier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0677889922', 'user', '2026-02-23 13:45:05'),
+('Fournier', 'Pierre', 'pierre.fournier@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0722334455', 'user', '2026-02-23 13:45:05'),
+('Renaud', 'Sophie', 'sophie.renaud@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0688665544', 'user', '2026-02-23 13:45:05'),
+('Girard', 'Sarah', 'sarah.girard@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0688665544', 'user', '2026-02-23 13:45:05'),
+('Lambert', 'Hugo', 'hugo.lambert@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0611223366', 'user', '2026-02-23 13:45:05'),
+('Masson', 'Julie', 'julie.masson@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0733445566', 'user', '2026-02-23 13:45:05'),
+('Henry', 'Arthur', 'arthur.henry@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0666554433', 'user', '2026-02-23 13:45:05'),
+('Admin', 'Admin', 'admin@email.fr', '$2y$10$T2amm5zInuoTRxz2XLlJA.wIUmCZS6oTWzoleo9QeifpSX4a4SgUW', '0777889900', 'admin', '2026-02-23 13:45:05');
 
 -- Insertion des agences de voyage
 INSERT INTO agencies (name) VALUES
