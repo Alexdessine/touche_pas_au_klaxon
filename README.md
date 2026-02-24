@@ -241,39 +241,56 @@ password
 
 ### Cloner le projet
 
+```bash
 git clone cd touche-pas-au-klaxon
-
+```
 ### Se rendre dans le dossier 
 
+```bash
 cd touche-pas-au-klaxon/
-
+```
 ### Installer les dépendances
 
+```bash
 composer install
+compoesr dump-autoload
+npm install concurrently
+```
+### Commande pour lancer le watcher Sass
+
+```bash
+npm run start
+```
 
 ### Configurer la base de données
 
 Créer une base MySQL :
 
+```bash
+mysql -u root -p
 CREATE DATABASE tpak;
-
+```
 Créer un fichier `.env` à la racine du projet si celui-ci n'existe pas :
 
+```bash
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_NAME=tpak
 DB_USER=root
 DB_PASS=
-
+```
 ### Importer les scripts
 
-mysql -u root -p tpak < database/schema.sql 
-mysql -u root -p tpak < database/seed.sql
-
+```bash
+mysql -u root -p < database/01_schema.sql 
+mysql -u root -p < database/02_seed.sql
+```
 ### Lancer le serveur
 
+```bash
 php -S localhost:8000 -tpublic
-
+```
 Accéder à :
-
+```bash
 http://localhost:8000
+```
