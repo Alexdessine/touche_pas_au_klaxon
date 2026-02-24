@@ -130,4 +130,34 @@ final class TripRepositoryTest extends TestCase
         $this->assertTrue(true);
     }
 
+    public function testExistsDuplicateReturnsTrueWhenFetchColumnIsTruthy(): void
+    {
+        $departure = new DateTimeImmutable('2026-03-03 08:00:00');
+        $arrival   = new DateTimeImmutable('2026-03-03 10:00:00');
+
+        $stmt = $this->createMock(PDOStatement::class);
+        $stmt->expects($this->once())
+            ->method('execute')
+            ->with([
+                ':departure_agency_id' => 1,
+                ':arrival_agency_id'   => 2,
+                ':departure_time'      => '2026-03-03 08:00:00',
+                ':arrival_time'        => '2026-03-03 10:00:00',
+            ])
+            ->willReturn(true);
+
+        $stmt->expects($this->once())
+            ->method('fetchColumn')
+            ->willReturn('1'); // truthy
+
+        $pdo = $this->createMock(PDO::class);
+        $pdo->expects($this->once())
+            ->method('prepare')
+            ->willReturn($stmt);
+
+        $repo = new TripRepository($pdo);
+
+        $this->assertTrue($repo->existsDuplicate(1, 2, $departure, $arrival));
+    }
+
 }
