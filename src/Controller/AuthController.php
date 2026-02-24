@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Core\Auth;
+use App\Repository\UserRepository;
+use App\Core\Connection;
 
 final class AuthController
 {
@@ -21,32 +23,70 @@ final class AuthController
         ]);
     }
 
-    public function logout(): void
-    {
-        Auth::logout();
-        header('Location: /');
-        exit;
-    }
-
     public function login(): void
     {
-        // Ici, vous ajouteriez la logique pour vérifier les informations d'identification de l'utilisateur
-        // Par exemple : Auth::attempt($_POST['email'], $_POST['password']);
-
-        // Si la connexion est réussie, redirigez vers la page d'accueil
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /login');
             exit;
         }
 
-        // Simulation utilisateur pour test
-        $_SESSION['user'] = [
-            'id' => 1,
-            'firstname' => 'Alex',
-            'lastname' => 'Martin',
-            'role' => 'admin' // change en 'user' pour tester
-        ];
+        // Validation défensive
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $password = filter_input(INPUT_POST, 'password'); // pas de filtre spécial ici
+        $remember = filter_input(INPUT_POST, 'remember', FILTER_VALIDATE_INT);
 
+        $errors = [];
+
+        if ($email === false || $email === null) {
+            $errors['email'] = "Email invalide.";
+        }
+
+        if (!is_string($password) || trim($password) === '') {
+            $errors['password'] = "Mot de passe requis.";
+        }
+
+        if (!empty($errors)) {
+            // Ré-affichage du formulaire avec erreurs (sans fuite)
+            View::render('auth/login', [
+                'title' => 'Connexion - Touche Pas au Klaxon',
+                'errors' => $errors,
+                'old' => [
+                    'email' => is_string($email) ? $email : '',
+                    'remember' => (int) ($remember ?? 0),
+                ],
+            ]);
+            return;
+        }
+
+        $pdo = Connection::getPdo(); // adapte à ton projet
+        $userRepo = new UserRepository($pdo);
+
+        $ok = Auth::attempt($userRepo, (string) $email, (string) $password);
+
+        if (!$ok) {
+            View::render('auth/login', [
+                'title' => 'Connexion - Touche Pas au Klaxon',
+                'errors' => [
+                    'global' => "Identifiants invalides.",
+                ],
+                'old' => [
+                    'email' => (string) $email,
+                    'remember' => (int) ($remember ?? 0),
+                ],
+            ]);
+            return;
+        }
+
+        $_SESSION['alert'] = "Connexion réussie.";
+        $_SESSION['messageType'] = "success";
+
+        header('Location: /');
+        exit;
+    }
+
+    public function logout(): void
+    {
+        Auth::logout();
         header('Location: /');
         exit;
     }

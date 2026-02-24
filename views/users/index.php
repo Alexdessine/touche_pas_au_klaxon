@@ -9,16 +9,13 @@
         </tr>
     </thead>
     <tbody>
+        <?php foreach ($users as $user): ?>
         <tr class="text-center">
-            <td>Martin Alexandre</td>
-            <td>0612345678</td>
-            <td>alexandre.martin@email.fr</td>
+            <td><?= htmlspecialchars($user->getFirstname() . ' ' . $user->getLastname()) ?></td>
+            <td><?= htmlspecialchars($user->getPhone()) ?></td>
+            <td><?= htmlspecialchars($user->getEmail()) ?></td>
         </tr>
-        <tr class="text-center">
-            <td>Dubois Sophie</td>
-            <td>0698765432</td>
-            <td>sophie.dubois@email.fr</td>
-        </tr>
+        <?php endforeach; ?>
         <!-- Ajoutez d'autres utilisateurs ici -->
     </tbody>
 </table>

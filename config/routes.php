@@ -66,7 +66,7 @@ return [
 
     [
         'method' => 'GET',
-        'path' => '/agences/edit',
+        'path' => '/agences/{id}/edit',
         'controller' => [AgenciesController::class, 'edit']
     ],
 
@@ -78,13 +78,13 @@ return [
 
     [
         'method' => 'POST',
-        'path' => '/agences/edit',
+        'path' => '/agences/{id}/edit',
         'controller' => [AgenciesController::class, 'update']
     ],
 
     [
         'method' => 'POST',
-        'path' => '/agences/delete',
+        'path' => '/agences/{id}/delete',
         'controller' => [AgenciesController::class, 'delete']
     ],
 
@@ -102,7 +102,7 @@ return [
 
     [
         'method' => 'GET',
-        'path' => '/trajets/edit',
+        'path' => '/trajets/{id}/edit',
         'controller' => [TripController::class, 'edit']
     ],
 
@@ -114,13 +114,13 @@ return [
 
     [
         'method' => 'POST',
-        'path' => '/trajets/edit',
+        'path' => '/trajets/{id}/edit',
         'controller' => [TripController::class, 'update']
     ],
 
     [
         'method' => 'POST',
-        'path' => '/trajets/delete',
+        'path' => '/trajets/{id}/delete',
         'controller' => [TripController::class, 'delete']
     ]
 
