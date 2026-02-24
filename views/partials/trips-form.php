@@ -93,7 +93,7 @@
     <div class="col-md-6 mx-auto">
       <label for="availableSeats" class="form-label">Nombre de places disponibles</label>
       <input type="number" class="form-control" id="availableSeats" name="available_seats"
-             min="1" max="50"
+             min="0" max="5"
              value="<?= htmlspecialchars((string)($trip['available_seats'] ?? '')) ?>"
              required>
       <?php if (!empty($errors['available_seats'])): ?>
