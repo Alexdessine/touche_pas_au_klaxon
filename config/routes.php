@@ -102,7 +102,7 @@ return [
 
     [
         'method' => 'GET',
-        'path' => '/trajets/edit',
+        'path' => '/trajets/{id}/edit',
         'controller' => [TripController::class, 'edit']
     ],
 
@@ -114,13 +114,13 @@ return [
 
     [
         'method' => 'POST',
-        'path' => '/trajets/edit',
+        'path' => '/trajets/{id}/edit',
         'controller' => [TripController::class, 'update']
     ],
 
     [
         'method' => 'POST',
-        'path' => '/trajets/delete',
+        'path' => '/trajets/{id}/delete',
         'controller' => [TripController::class, 'delete']
     ]
 

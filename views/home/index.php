@@ -9,7 +9,7 @@
 <h2 class="mt-5">Trajets disponibles</h2>
 <p class="mb-4">Pour obtenir plus d'informations sur un trajet, veuillez vous connecter ou vous inscrire.</p>
 <?php endif; ?>
-
+<?php require_once __DIR__ . '/../partials/alert.php'; ?>
 <?php require_once __DIR__ . '/../partials/trips-table.php'; ?>
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

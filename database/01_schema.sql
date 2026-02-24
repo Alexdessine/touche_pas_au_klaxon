@@ -41,16 +41,21 @@ create table agencies (
 
 
 -- Création de la table trips
-create table trips (
-    id int auto_increment primary key,
-    user_id int not null,
-    agency_id int not null,
-    origin varchar(255) not null,
-    destination varchar(255) not null,
-    departure_time datetime not null,
-    arrival_time datetime not null,
-    available_seats int not null,
-    created_at timestamp default current_timestamp,
-    foreign key (user_id) references users(id) on delete cascade,
-    foreign key (agency_id) references agencies(id) on delete cascade
+CREATE TABLE trips (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    departure_agency_id INT NOT NULL,
+    arrival_agency_id INT NOT NULL,
+    departure_time DATETIME NOT NULL,
+    arrival_time DATETIME NOT NULL,
+    available_seats INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (departure_agency_id) REFERENCES agencies(id),
+    FOREIGN KEY (arrival_agency_id) REFERENCES agencies(id),
+
+    CHECK (available_seats > 0),
+    CHECK (arrival_time > departure_time),
+    CHECK (departure_agency_id <> arrival_agency_id)
 );
