@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <?php require __DIR__ . '/header.php'; ?>
+    <header>
+        <?php require __DIR__ . '/header.php'; ?>
+    </header>
 
     <main class="container my-5 flex-grow-1">
         <?= $content ?>
     </main>
-
-    <?php require __DIR__ . '/footer.php'; ?>
+    <footer class="mt-auto bg-light">
+        <?php require __DIR__ . '/footer.php'; ?>
+    </footer>
 </body>
 </html>

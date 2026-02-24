@@ -24,7 +24,7 @@ ALTER TABLE users    AUTO_INCREMENT = 1;
 
 
 -- Insertion des utilisateurs
-INSERT INTO users (firstname, lastname, email, password, phone, role) VALUES
+INSERT INTO users (firstname, lastname, email, password, phone, role, created_at) VALUES
 ('Martin', 'Alexandre', 'alexandre.martin@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0612345678', 'user', '2026-02-23 13:45:05'),
 ('Dubois', 'Sophie', 'sophie.dubois@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0698765432', 'user', '2026-02-23 13:45:05'),
 ('Bernard', 'Julien', 'julien.bernard@email.fr', '$2y$12$EZtiISkHL4.1dqmgf0Vjju4VWjzYzZ1LxCMHsaq6PY54dtJRX.YaO', '0622446688', 'user', '2026-02-23 13:45:05'),
